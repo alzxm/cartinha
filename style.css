@@ -5,171 +5,383 @@
 }
 
 :root {
-    --primario: #f4f4f4;
-    --fundo: #08090b;
-    --fundo-sobre: #17191d;
-    --solapa-sobre: #292c32;
-    --cuerpo-sobre: #111216;
-    --sombra: rgba(0, 0, 0, 0.8);
+    --fundo: #17191d;
+    --fundo-escuro: #0e1013;
+
+    --envelope: #24272c;
+    --envelope-escuro: #15171b;
+    --envelope-claro: #30343a;
+
+    --amarelo: #f5c518;
+    --amarelo-fraco: rgba(245, 197, 24, 0.25);
+
+    --papel: #eeeeeb;
     --texto: #171717;
-    --coracao: #f5c518;
+
+    --sombra: rgba(0, 0, 0, 0.65);
 }
 
-/* FUNDO */
+
+/* =========================
+   FUNDO
+========================= */
 
 body {
     background:
-        radial-gradient(circle at center, #202329 0%, #0d0f12 45%, #050608 100%);
+        radial-gradient(
+            circle at center,
+            #292d32 0%,
+            #202328 35%,
+            #17191d 70%,
+            #111316 100%
+        );
+
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+
     height: 100vh;
+
     overflow: hidden;
+
     position: relative;
 }
 
-/* detalhes de luz no fundo */
+
+/* luz suave atrás do envelope */
 
 body::before {
     content: "";
+
     position: absolute;
-    width: 500px;
-    height: 500px;
-    background: rgba(245, 197, 24, 0.04);
+
+    width: 600px;
+    height: 600px;
+
     border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.025);
+
     filter: blur(80px);
+
     pointer-events: none;
 }
 
-/* TÍTULO */
+
+/* =========================
+   MORCEGOS NO FUNDO
+========================= */
+
+body::after {
+    content: "🦇    🦇       🦇        🦇";
+
+    position: absolute;
+
+    top: 12%;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 100%;
+
+    text-align: center;
+
+    font-size: 25px;
+
+    opacity: 0.09;
+
+    letter-spacing: 20px;
+
+    filter: grayscale(1);
+
+    pointer-events: none;
+}
+
+
+/* =========================
+   TÍTULO
+========================= */
 
 h1 {
     font-family: "Marck Script", serif;
+
     text-align: center;
+
     font-size: 60px;
+
     margin-bottom: 50px;
-    color: #f5c518;
+
+    color: var(--amarelo);
+
     text-shadow:
-        0 0 5px rgba(245, 197, 24, 0.4),
-        0 0 20px rgba(245, 197, 24, 0.15);
-    z-index: 2;
+        0 0 5px rgba(245, 197, 24, 0.3),
+        0 0 20px rgba(245, 197, 24, 0.1);
+
+    z-index: 5;
 }
 
-/* ENVELOPE */
+
+/* =========================
+   CONTAINER
+========================= */
 
 .contenedor {
     width: 400px;
-    z-index: 2;
+
+    position: relative;
+
+    z-index: 5;
 }
+
+
+/* =========================
+   ENVELOPE
+========================= */
 
 .envoltura-sobre {
     position: relative;
-    background-color: var(--fundo-sobre);
+
+    background-color: var(--envelope);
+
+    border-radius: 12px;
+
     box-shadow:
-        0 15px 40px rgba(0, 0, 0, 0.8),
-        0 0 15px rgba(245, 197, 24, 0.08);
-    border-radius: 10px;
+        0 20px 45px var(--sombra),
+        0 0 25px rgba(0, 0, 0, 0.4);
 }
 
-/* CORPO DO ENVELOPE */
+
+/* =========================
+   ASAS / SILHUETA DE MORCEGO
+========================= */
+
+/* asa esquerda */
+
+.envoltura-sobre::before {
+    content: "";
+
+    position: absolute;
+
+    left: -75px;
+    top: 70px;
+
+    width: 100px;
+    height: 150px;
+
+    background: #101216;
+
+    clip-path: polygon(
+        100% 25%,
+        65% 10%,
+        45% 0,
+        40% 28%,
+        15% 18%,
+        20% 50%,
+        0% 42%,
+        15% 75%,
+        45% 100%,
+        100% 75%
+    );
+
+    opacity: 0.95;
+
+    filter: drop-shadow(
+        0 8px 8px rgba(0, 0, 0, 0.4)
+    );
+}
+
+
+/* asa direita */
+
+.envoltura-sobre::after {
+    content: "";
+
+    position: absolute;
+
+    right: -75px;
+    top: 70px;
+
+    width: 100px;
+    height: 150px;
+
+    background: #101216;
+
+    clip-path: polygon(
+        0% 25%,
+        35% 10%,
+        55% 0,
+        60% 28%,
+        85% 18%,
+        80% 50%,
+        100% 42%,
+        85% 75%,
+        55% 100%,
+        0% 75%
+    );
+
+    opacity: 0.95;
+
+    filter: drop-shadow(
+        0 8px 8px rgba(0, 0, 0, 0.4)
+    );
+}
+
+
+/* =========================
+   ENVELOPE
+========================= */
 
 .sobre {
     position: relative;
+
     width: 400px;
     height: 300px;
+
+    overflow: visible;
 }
+
 
 /* ABA SUPERIOR */
 
 .sobre::before {
     content: "";
+
     position: absolute;
+
     top: 0;
     left: 0;
     right: 0;
+
     z-index: 4;
 
-    border-top: 180px solid var(--solapa-sobre);
+    border-top: 180px solid var(--envelope-claro);
+
     border-right: 200px solid transparent;
     border-left: 200px solid transparent;
 
     transform-origin: top;
-    transition: all 0.5s ease-in-out 0.7s;
+
+    transition:
+        all 0.5s ease-in-out 0.7s;
 
     border-radius: 10px;
 
-    /* detalhe amarelo */
-    filter: drop-shadow(0 3px 2px rgba(0, 0, 0, 0.4));
+    filter:
+        drop-shadow(
+            0 3px 3px rgba(0, 0, 0, 0.35)
+        );
 }
 
-/* LADO DIREITO */
+
+/* =========================
+   LADO DIREITO
+========================= */
 
 .solapa-derecha {
     position: absolute;
+
     top: 0;
     right: 0;
+
     width: 100%;
     height: 100%;
 
-    clip-path: polygon(100% 0, 0 100%, 100% 100%);
+    clip-path:
+        polygon(
+            100% 0,
+            0 100%,
+            100% 100%
+        );
 
-    background-color: #0e1013;
+    background:
+        linear-gradient(
+            135deg,
+            #25282d,
+            #111317
+        );
 
     border-bottom-right-radius: 10px;
     border-top-right-radius: 10px;
     border-bottom-left-radius: 10px;
 }
 
-/* LADO ESQUERDO */
+
+/* =========================
+   LADO ESQUERDO
+========================= */
 
 .solapa-izquierda {
     position: absolute;
+
     top: 0;
     left: 0;
+
     width: 100%;
     height: 100%;
 
-    clip-path: polygon(0 0, 0 100%, 100% 100%);
+    clip-path:
+        polygon(
+            0 0,
+            0 100%,
+            100% 100%
+        );
 
-    background-color: #0e1013;
+    background:
+        linear-gradient(
+            225deg,
+            #25282d,
+            #111317
+        );
 
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
 }
 
-/* CARTA */
+
+/* =========================
+   CARTA
+========================= */
 
 .carta {
     position: absolute;
+
     bottom: 0;
+
     width: 100%;
     height: 100%;
 
     background:
         linear-gradient(
             145deg,
-            #f8f8f8,
-            #e5e5e5
+            #f5f5f3,
+            #dededb
         );
 
     text-align: center;
 
     box-shadow:
-        0 0 15px rgba(0, 0, 0, 0.5);
+        0 0 12px rgba(0, 0, 0, 0.55);
 
     padding: 20px;
 
     border-radius: 10px;
 
-    transition: transform .5s ease-in-out;
+    transition:
+        transform 0.5s ease-in-out;
 }
 
-/* CONTEÚDO DA CARTA */
+
+/* =========================
+   TEXTO
+========================= */
 
 .contenido {
-    font-family: "Gill Sans", Calibri, sans-serif;
+    font-family:
+        "Gill Sans",
+        Calibri,
+        sans-serif;
 
     color: var(--texto);
 
@@ -177,7 +389,8 @@ h1 {
 
     font-size: 12px;
 
-    border: 3px dotted #222;
+    border:
+        3px dotted #242424;
 
     padding: 10px;
 
@@ -188,17 +401,21 @@ h1 {
     cursor: pointer;
 
     overflow-y: scroll;
-
-    background: rgba(255, 255, 255, 0.5);
 }
 
-/* NOME / DESTAQUES */
+
+/* =========================
+   DETALHE AMARELO
+========================= */
 
 .contenido strong {
-    color: #111;
+    color: #171717;
 }
 
-/* CORAÇÃO / SÍMBOLO CENTRAL */
+
+/* =========================
+   BOTÃO CENTRAL
+========================= */
 
 .corazon {
     position: absolute;
@@ -209,9 +426,12 @@ h1 {
     width: 30px;
     height: 30px;
 
-    background-color: var(--coracao);
+    background-color:
+        var(--amarelo);
 
-    transform: translate(-50%, 0) rotate(45deg);
+    transform:
+        translate(-50%, 0)
+        rotate(45deg);
 
     transition:
         transform 0.5s ease-in-out 1s;
@@ -221,8 +441,9 @@ h1 {
     cursor: pointer;
 
     box-shadow:
-        0 0 8px rgba(245, 197, 24, 0.4);
+        0 0 8px var(--amarelo-fraco);
 }
+
 
 .corazon::before,
 .corazon::after {
@@ -233,60 +454,84 @@ h1 {
     width: 30px;
     height: 30px;
 
-    background-color: var(--coracao);
+    background-color:
+        var(--amarelo);
 
     border-radius: 100%;
 }
+
 
 .corazon::before {
     top: -15px;
 }
 
+
 .corazon::after {
     right: 15px;
 }
 
-/* ANIMAÇÃO DA ABA */
+
+/* =========================
+   ABRIR ENVELOPE
+========================= */
 
 .abierto .sobre::before {
-    transform: rotateX(180deg);
+    transform:
+        rotateX(180deg);
+
     z-index: 0;
 }
 
-/* ANIMAÇÃO DO SÍMBOLO */
 
 .abierto .corazon {
-    transform: rotate(90deg);
-    transition-delay: 0.4s;
+    transform:
+        rotate(90deg);
+
+    transition-delay:
+        0.4s;
 }
 
-/* CARTA SUBINDO */
+
+/* =========================
+   CARTA SUBINDO
+========================= */
 
 .carta.mostrar-carta {
-    transform: translateY(-290px);
-    transition: transform .5s ease-in-out;
+    transform:
+        translateY(-290px);
+
+    transition:
+        transform 0.5s ease-in-out;
 }
 
-/* CARTA FECHANDO */
 
 .carta.cerrando-carta {
-    transform: translateY(-290px);
-    transition: transform .5s ease-in-out;
+    transform:
+        translateY(-290px);
+
+    transition:
+        transform 0.5s ease-in-out;
 }
 
-/* CARTA ABERTA */
 
 .carta.abierta {
     z-index: 10000;
 }
 
-/* DESATIVA CLIQUE DA ABA */
 
-.envoltura-sobre.desactivar-sobre .sobre::before {
+/* =========================
+   DESATIVAR ENVELOPE
+========================= */
+
+.envoltura-sobre.desactivar-sobre
+.sobre::before {
     pointer-events: none;
 }
 
-/* SCROLL */
+
+/* =========================
+   SCROLL
+========================= */
 
 ::-webkit-scrollbar {
     width: 7px;
@@ -297,17 +542,21 @@ h1 {
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #333;
-    border-radius: 4px;
+    background: #393c40;
+
+    border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background-color: #f5c518;
+    background: var(--amarelo);
 }
 
-/* CELULAR */
 
-@media screen and (max-width: 400px) {
+/* =========================
+   CELULAR
+========================= */
+
+@media screen and (max-width: 550px) {
 
     .contenedor {
         width: 300px;
@@ -319,13 +568,29 @@ h1 {
     }
 
     .sobre::before {
-        border-top: 150px solid var(--solapa-sobre);
+        border-top: 150px solid var(--envelope-claro);
+
         border-right: 150px solid transparent;
         border-left: 150px solid transparent;
     }
 
+    .envoltura-sobre::before {
+        left: -55px;
+
+        width: 75px;
+        height: 120px;
+    }
+
+    .envoltura-sobre::after {
+        right: -55px;
+
+        width: 75px;
+        height: 120px;
+    }
+
     h1 {
         font-size: 48px;
+
         margin-bottom: 35px;
     }
 }
