@@ -5,391 +5,171 @@
 }
 
 :root {
-    --fundo: #25282d;
-    --fundo-escuro: #181a1e;
-
-    --envelope: #292c31;
-    --envelope-escuro: #17191d;
-    --envelope-claro: #363a40;
-
-    --amarelo: #f5c518;
-    --amarelo-brilho: rgba(245, 197, 24, 0.35);
-
-    --papel: #eeeeeb;
+    --primario: #f4f4f4;
+    --fundo: #08090b;
+    --fundo-sobre: #17191d;
+    --solapa-sobre: #292c32;
+    --cuerpo-sobre: #111216;
+    --sombra: rgba(0, 0, 0, 0.8);
     --texto: #171717;
-
-    --sombra: rgba(0, 0, 0, 0.7);
+    --coracao: #f5c518;
 }
 
-
-/* =====================================
-   FUNDO
-===================================== */
+/* FUNDO */
 
 body {
     background:
-        radial-gradient(
-            circle at center,
-            #30343a 0%,
-            #292c31 30%,
-            #22252a 60%,
-            #191b1f 100%
-        );
-
+        radial-gradient(circle at center, #202329 0%, #0d0f12 45%, #050608 100%);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-
     height: 100vh;
-
     overflow: hidden;
-
     position: relative;
 }
 
-
-/* brilho bem discreto no fundo */
+/* detalhes de luz no fundo */
 
 body::before {
     content: "";
-
     position: absolute;
-
-    width: 600px;
-    height: 600px;
-
+    width: 500px;
+    height: 500px;
+    background: rgba(245, 197, 24, 0.04);
     border-radius: 50%;
-
-    background: rgba(255, 255, 255, 0.025);
-
-    filter: blur(90px);
-
+    filter: blur(80px);
     pointer-events: none;
 }
 
-
-/* morcegos bem discretos no fundo */
-
-body::after {
-    content: "🦇     🦇          🦇";
-
-    position: absolute;
-
-    top: 13%;
-    left: 50%;
-
-    transform: translateX(-50%);
-
-    width: 100%;
-
-    text-align: center;
-
-    font-size: 25px;
-
-    letter-spacing: 18px;
-
-    opacity: 0.07;
-
-    filter: grayscale(1);
-
-    pointer-events: none;
-}
-
-
-/* =====================================
-   TÍTULO
-===================================== */
+/* TÍTULO */
 
 h1 {
     font-family: "Marck Script", serif;
-
     text-align: center;
-
     font-size: 60px;
-
     margin-bottom: 50px;
-
-    color: var(--amarelo);
-
+    color: #f5c518;
     text-shadow:
         0 0 5px rgba(245, 197, 24, 0.4),
-        0 0 15px rgba(245, 197, 24, 0.2);
-
-    z-index: 10;
+        0 0 20px rgba(245, 197, 24, 0.15);
+    z-index: 2;
 }
 
-
-/* =====================================
-   CONTAINER
-===================================== */
+/* ENVELOPE */
 
 .contenedor {
     width: 400px;
-
-    position: relative;
-
-    z-index: 10;
+    z-index: 2;
 }
-
-
-/* =====================================
-   ENVELOPE
-===================================== */
 
 .envoltura-sobre {
     position: relative;
-
-    background-color: var(--envelope);
-
-    border-radius: 12px;
-
+    background-color: var(--fundo-sobre);
     box-shadow:
-        0 20px 45px rgba(0, 0, 0, 0.75),
-        0 0 20px rgba(0, 0, 0, 0.35);
+        0 15px 40px rgba(0, 0, 0, 0.8),
+        0 0 15px rgba(245, 197, 24, 0.08);
+    border-radius: 10px;
 }
 
-
-/* =====================================
-   ASA ESQUERDA DO MORCEGO
-===================================== */
-
-.envoltura-sobre::before {
-    content: "";
-
-    position: absolute;
-
-    left: -85px;
-    top: 45px;
-
-    width: 115px;
-    height: 210px;
-
-    background: #0c0d10;
-
-    clip-path: polygon(
-        100% 30%,
-        72% 18%,
-        58% 0%,
-        55% 30%,
-        35% 18%,
-        38% 48%,
-        12% 38%,
-        25% 68%,
-        0% 62%,
-        18% 88%,
-        48% 100%,
-        72% 78%,
-        100% 72%
-    );
-
-    z-index: -1;
-
-    filter:
-        drop-shadow(
-            0 8px 8px rgba(0, 0, 0, 0.7)
-        );
-}
-
-
-/* =====================================
-   ASA DIREITA DO MORCEGO
-===================================== */
-
-.envoltura-sobre::after {
-    content: "";
-
-    position: absolute;
-
-    right: -85px;
-    top: 45px;
-
-    width: 115px;
-    height: 210px;
-
-    background: #0c0d10;
-
-    clip-path: polygon(
-        0% 30%,
-        28% 18%,
-        42% 0%,
-        45% 30%,
-        65% 18%,
-        62% 48%,
-        88% 38%,
-        75% 68%,
-        100% 62%,
-        82% 88%,
-        52% 100%,
-        28% 78%,
-        0% 72%
-    );
-
-    z-index: -1;
-
-    filter:
-        drop-shadow(
-            0 8px 8px rgba(0, 0, 0, 0.7)
-        );
-}
-
-
-/* =====================================
-   CORPO DO ENVELOPE
-===================================== */
+/* CORPO DO ENVELOPE */
 
 .sobre {
     position: relative;
-
     width: 400px;
     height: 300px;
-
-    overflow: visible;
 }
 
-
-/* =====================================
-   ABA SUPERIOR
-===================================== */
+/* ABA SUPERIOR */
 
 .sobre::before {
     content: "";
-
     position: absolute;
-
     top: 0;
     left: 0;
     right: 0;
-
     z-index: 4;
 
-    border-top: 180px solid var(--envelope-claro);
-
+    border-top: 180px solid var(--solapa-sobre);
     border-right: 200px solid transparent;
     border-left: 200px solid transparent;
 
     transform-origin: top;
-
-    transition:
-        all 0.5s ease-in-out 0.7s;
+    transition: all 0.5s ease-in-out 0.7s;
 
     border-radius: 10px;
 
-    filter:
-        drop-shadow(
-            0 3px 3px rgba(0, 0, 0, 0.4)
-        );
+    /* detalhe amarelo */
+    filter: drop-shadow(0 3px 2px rgba(0, 0, 0, 0.4));
 }
 
-
-/* =====================================
-   ABA DIREITA
-===================================== */
+/* LADO DIREITO */
 
 .solapa-derecha {
     position: absolute;
-
     top: 0;
     right: 0;
-
     width: 100%;
     height: 100%;
 
-    clip-path:
-        polygon(
-            100% 0,
-            0 100%,
-            100% 100%
-        );
+    clip-path: polygon(100% 0, 0 100%, 100% 100%);
 
-    background:
-        linear-gradient(
-            135deg,
-            #30343a,
-            #17191d
-        );
+    background-color: #0e1013;
 
     border-bottom-right-radius: 10px;
     border-top-right-radius: 10px;
     border-bottom-left-radius: 10px;
 }
 
-
-/* =====================================
-   ABA ESQUERDA
-===================================== */
+/* LADO ESQUERDO */
 
 .solapa-izquierda {
     position: absolute;
-
     top: 0;
     left: 0;
-
     width: 100%;
     height: 100%;
 
-    clip-path:
-        polygon(
-            0 0,
-            0 100%,
-            100% 100%
-        );
+    clip-path: polygon(0 0, 0 100%, 100% 100%);
 
-    background:
-        linear-gradient(
-            225deg,
-            #30343a,
-            #17191d
-        );
+    background-color: #0e1013;
 
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
 }
 
-
-/* =====================================
-   CARTA
-===================================== */
+/* CARTA */
 
 .carta {
     position: absolute;
-
     bottom: 0;
-
     width: 100%;
     height: 100%;
 
     background:
         linear-gradient(
             145deg,
-            #f5f5f3,
-            #dededb
+            #f8f8f8,
+            #e5e5e5
         );
 
     text-align: center;
 
     box-shadow:
-        0 0 15px rgba(0, 0, 0, 0.55);
+        0 0 15px rgba(0, 0, 0, 0.5);
 
     padding: 20px;
 
     border-radius: 10px;
 
-    transition:
-        transform 0.5s ease-in-out;
+    transition: transform .5s ease-in-out;
 }
 
-
-/* =====================================
-   CONTEÚDO DA CARTA
-===================================== */
+/* CONTEÚDO DA CARTA */
 
 .contenido {
-    font-family:
-        "Gill Sans",
-        Calibri,
-        sans-serif;
+    font-family: "Gill Sans", Calibri, sans-serif;
 
     color: var(--texto);
 
@@ -397,8 +177,7 @@ h1 {
 
     font-size: 12px;
 
-    border:
-        3px dotted #242424;
+    border: 3px dotted #222;
 
     padding: 10px;
 
@@ -409,21 +188,17 @@ h1 {
     cursor: pointer;
 
     overflow-y: scroll;
+
+    background: rgba(255, 255, 255, 0.5);
 }
 
-
-/* =====================================
-   TEXTO EM NEGRITO
-===================================== */
+/* NOME / DESTAQUES */
 
 .contenido strong {
     color: #111;
 }
 
-
-/* =====================================
-   CORAÇÃO CENTRAL
-===================================== */
+/* CORAÇÃO / SÍMBOLO CENTRAL */
 
 .corazon {
     position: absolute;
@@ -434,12 +209,9 @@ h1 {
     width: 30px;
     height: 30px;
 
-    background-color:
-        var(--amarelo);
+    background-color: var(--coracao);
 
-    transform:
-        translate(-50%, 0)
-        rotate(45deg);
+    transform: translate(-50%, 0) rotate(45deg);
 
     transition:
         transform 0.5s ease-in-out 1s;
@@ -449,9 +221,8 @@ h1 {
     cursor: pointer;
 
     box-shadow:
-        0 0 8px var(--amarelo-brilho);
+        0 0 8px rgba(245, 197, 24, 0.4);
 }
-
 
 .corazon::before,
 .corazon::after {
@@ -462,92 +233,60 @@ h1 {
     width: 30px;
     height: 30px;
 
-    background-color:
-        var(--amarelo);
+    background-color: var(--coracao);
 
     border-radius: 100%;
 }
-
 
 .corazon::before {
     top: -15px;
 }
 
-
 .corazon::after {
     right: 15px;
 }
 
-
-/* =====================================
-   ABRIR ENVELOPE
-===================================== */
+/* ANIMAÇÃO DA ABA */
 
 .abierto .sobre::before {
-    transform:
-        rotateX(180deg);
-
+    transform: rotateX(180deg);
     z-index: 0;
 }
 
+/* ANIMAÇÃO DO SÍMBOLO */
 
 .abierto .corazon {
-    transform:
-        rotate(90deg);
-
-    transition-delay:
-        0.4s;
+    transform: rotate(90deg);
+    transition-delay: 0.4s;
 }
 
-
-/* =====================================
-   CARTA SUBINDO
-===================================== */
+/* CARTA SUBINDO */
 
 .carta.mostrar-carta {
-    transform:
-        translateY(-290px);
-
-    transition:
-        transform 0.5s ease-in-out;
+    transform: translateY(-290px);
+    transition: transform .5s ease-in-out;
 }
 
-
-/* =====================================
-   CARTA FECHANDO
-===================================== */
+/* CARTA FECHANDO */
 
 .carta.cerrando-carta {
-    transform:
-        translateY(-290px);
-
-    transition:
-        transform 0.5s ease-in-out;
+    transform: translateY(-290px);
+    transition: transform .5s ease-in-out;
 }
 
-
-/* =====================================
-   CARTA ABERTA
-===================================== */
+/* CARTA ABERTA */
 
 .carta.abierta {
     z-index: 10000;
 }
 
+/* DESATIVA CLIQUE DA ABA */
 
-/* =====================================
-   DESATIVAR ABA
-===================================== */
-
-.envoltura-sobre.desactivar-sobre
-.sobre::before {
+.envoltura-sobre.desactivar-sobre .sobre::before {
     pointer-events: none;
 }
 
-
-/* =====================================
-   SCROLL
-===================================== */
+/* SCROLL */
 
 ::-webkit-scrollbar {
     width: 7px;
@@ -558,21 +297,17 @@ h1 {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #3c4046;
-
-    border-radius: 5px;
+    background-color: #333;
+    border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--amarelo);
+    background-color: #f5c518;
 }
 
+/* CELULAR */
 
-/* =====================================
-   CELULAR
-===================================== */
-
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 400px) {
 
     .contenedor {
         width: 300px;
@@ -584,42 +319,13 @@ h1 {
     }
 
     .sobre::before {
-        border-top:
-            150px solid
-            var(--envelope-claro);
-
-        border-right:
-            150px solid transparent;
-
-        border-left:
-            150px solid transparent;
+        border-top: 150px solid var(--solapa-sobre);
+        border-right: 150px solid transparent;
+        border-left: 150px solid transparent;
     }
-
-
-    /* asas menores no celular */
-
-    .envoltura-sobre::before {
-        left: -55px;
-
-        top: 40px;
-
-        width: 75px;
-        height: 170px;
-    }
-
-    .envoltura-sobre::after {
-        right: -55px;
-
-        top: 40px;
-
-        width: 75px;
-        height: 170px;
-    }
-
 
     h1 {
         font-size: 48px;
-
         margin-bottom: 35px;
     }
 }
