@@ -5,35 +5,35 @@
 }
 
 :root {
-    --fundo: #17191d;
-    --fundo-escuro: #0e1013;
+    --fundo: #25282d;
+    --fundo-escuro: #181a1e;
 
-    --envelope: #24272c;
-    --envelope-escuro: #15171b;
-    --envelope-claro: #30343a;
+    --envelope: #292c31;
+    --envelope-escuro: #17191d;
+    --envelope-claro: #363a40;
 
     --amarelo: #f5c518;
-    --amarelo-fraco: rgba(245, 197, 24, 0.25);
+    --amarelo-brilho: rgba(245, 197, 24, 0.35);
 
     --papel: #eeeeeb;
     --texto: #171717;
 
-    --sombra: rgba(0, 0, 0, 0.65);
+    --sombra: rgba(0, 0, 0, 0.7);
 }
 
 
-/* =========================
+/* =====================================
    FUNDO
-========================= */
+===================================== */
 
 body {
     background:
         radial-gradient(
             circle at center,
-            #292d32 0%,
-            #202328 35%,
-            #17191d 70%,
-            #111316 100%
+            #30343a 0%,
+            #292c31 30%,
+            #22252a 60%,
+            #191b1f 100%
         );
 
     display: flex;
@@ -49,7 +49,7 @@ body {
 }
 
 
-/* luz suave atrás do envelope */
+/* brilho bem discreto no fundo */
 
 body::before {
     content: "";
@@ -63,22 +63,20 @@ body::before {
 
     background: rgba(255, 255, 255, 0.025);
 
-    filter: blur(80px);
+    filter: blur(90px);
 
     pointer-events: none;
 }
 
 
-/* =========================
-   MORCEGOS NO FUNDO
-========================= */
+/* morcegos bem discretos no fundo */
 
 body::after {
-    content: "🦇    🦇       🦇        🦇";
+    content: "🦇     🦇          🦇";
 
     position: absolute;
 
-    top: 12%;
+    top: 13%;
     left: 50%;
 
     transform: translateX(-50%);
@@ -89,9 +87,9 @@ body::after {
 
     font-size: 25px;
 
-    opacity: 0.09;
+    letter-spacing: 18px;
 
-    letter-spacing: 20px;
+    opacity: 0.07;
 
     filter: grayscale(1);
 
@@ -99,9 +97,9 @@ body::after {
 }
 
 
-/* =========================
+/* =====================================
    TÍTULO
-========================= */
+===================================== */
 
 h1 {
     font-family: "Marck Script", serif;
@@ -115,29 +113,29 @@ h1 {
     color: var(--amarelo);
 
     text-shadow:
-        0 0 5px rgba(245, 197, 24, 0.3),
-        0 0 20px rgba(245, 197, 24, 0.1);
+        0 0 5px rgba(245, 197, 24, 0.4),
+        0 0 15px rgba(245, 197, 24, 0.2);
 
-    z-index: 5;
+    z-index: 10;
 }
 
 
-/* =========================
+/* =====================================
    CONTAINER
-========================= */
+===================================== */
 
 .contenedor {
     width: 400px;
 
     position: relative;
 
-    z-index: 5;
+    z-index: 10;
 }
 
 
-/* =========================
+/* =====================================
    ENVELOPE
-========================= */
+===================================== */
 
 .envoltura-sobre {
     position: relative;
@@ -147,90 +145,98 @@ h1 {
     border-radius: 12px;
 
     box-shadow:
-        0 20px 45px var(--sombra),
-        0 0 25px rgba(0, 0, 0, 0.4);
+        0 20px 45px rgba(0, 0, 0, 0.75),
+        0 0 20px rgba(0, 0, 0, 0.35);
 }
 
 
-/* =========================
-   ASAS / SILHUETA DE MORCEGO
-========================= */
-
-/* asa esquerda */
+/* =====================================
+   ASA ESQUERDA DO MORCEGO
+===================================== */
 
 .envoltura-sobre::before {
     content: "";
 
     position: absolute;
 
-    left: -75px;
-    top: 70px;
+    left: -85px;
+    top: 45px;
 
-    width: 100px;
-    height: 150px;
+    width: 115px;
+    height: 210px;
 
-    background: #101216;
+    background: #0c0d10;
 
     clip-path: polygon(
-        100% 25%,
-        65% 10%,
-        45% 0,
-        40% 28%,
-        15% 18%,
-        20% 50%,
-        0% 42%,
-        15% 75%,
-        45% 100%,
-        100% 75%
+        100% 30%,
+        72% 18%,
+        58% 0%,
+        55% 30%,
+        35% 18%,
+        38% 48%,
+        12% 38%,
+        25% 68%,
+        0% 62%,
+        18% 88%,
+        48% 100%,
+        72% 78%,
+        100% 72%
     );
 
-    opacity: 0.95;
+    z-index: -1;
 
-    filter: drop-shadow(
-        0 8px 8px rgba(0, 0, 0, 0.4)
-    );
+    filter:
+        drop-shadow(
+            0 8px 8px rgba(0, 0, 0, 0.7)
+        );
 }
 
 
-/* asa direita */
+/* =====================================
+   ASA DIREITA DO MORCEGO
+===================================== */
 
 .envoltura-sobre::after {
     content: "";
 
     position: absolute;
 
-    right: -75px;
-    top: 70px;
+    right: -85px;
+    top: 45px;
 
-    width: 100px;
-    height: 150px;
+    width: 115px;
+    height: 210px;
 
-    background: #101216;
+    background: #0c0d10;
 
     clip-path: polygon(
-        0% 25%,
-        35% 10%,
-        55% 0,
-        60% 28%,
-        85% 18%,
-        80% 50%,
-        100% 42%,
-        85% 75%,
-        55% 100%,
-        0% 75%
+        0% 30%,
+        28% 18%,
+        42% 0%,
+        45% 30%,
+        65% 18%,
+        62% 48%,
+        88% 38%,
+        75% 68%,
+        100% 62%,
+        82% 88%,
+        52% 100%,
+        28% 78%,
+        0% 72%
     );
 
-    opacity: 0.95;
+    z-index: -1;
 
-    filter: drop-shadow(
-        0 8px 8px rgba(0, 0, 0, 0.4)
-    );
+    filter:
+        drop-shadow(
+            0 8px 8px rgba(0, 0, 0, 0.7)
+        );
 }
 
 
-/* =========================
-   ENVELOPE
-========================= */
+/* =====================================
+   CORPO DO ENVELOPE
+===================================== */
 
 .sobre {
     position: relative;
@@ -242,7 +248,9 @@ h1 {
 }
 
 
-/* ABA SUPERIOR */
+/* =====================================
+   ABA SUPERIOR
+===================================== */
 
 .sobre::before {
     content: "";
@@ -269,14 +277,14 @@ h1 {
 
     filter:
         drop-shadow(
-            0 3px 3px rgba(0, 0, 0, 0.35)
+            0 3px 3px rgba(0, 0, 0, 0.4)
         );
 }
 
 
-/* =========================
-   LADO DIREITO
-========================= */
+/* =====================================
+   ABA DIREITA
+===================================== */
 
 .solapa-derecha {
     position: absolute;
@@ -297,8 +305,8 @@ h1 {
     background:
         linear-gradient(
             135deg,
-            #25282d,
-            #111317
+            #30343a,
+            #17191d
         );
 
     border-bottom-right-radius: 10px;
@@ -307,9 +315,9 @@ h1 {
 }
 
 
-/* =========================
-   LADO ESQUERDO
-========================= */
+/* =====================================
+   ABA ESQUERDA
+===================================== */
 
 .solapa-izquierda {
     position: absolute;
@@ -330,8 +338,8 @@ h1 {
     background:
         linear-gradient(
             225deg,
-            #25282d,
-            #111317
+            #30343a,
+            #17191d
         );
 
     border-top-left-radius: 10px;
@@ -340,9 +348,9 @@ h1 {
 }
 
 
-/* =========================
+/* =====================================
    CARTA
-========================= */
+===================================== */
 
 .carta {
     position: absolute;
@@ -362,7 +370,7 @@ h1 {
     text-align: center;
 
     box-shadow:
-        0 0 12px rgba(0, 0, 0, 0.55);
+        0 0 15px rgba(0, 0, 0, 0.55);
 
     padding: 20px;
 
@@ -373,9 +381,9 @@ h1 {
 }
 
 
-/* =========================
-   TEXTO
-========================= */
+/* =====================================
+   CONTEÚDO DA CARTA
+===================================== */
 
 .contenido {
     font-family:
@@ -404,18 +412,18 @@ h1 {
 }
 
 
-/* =========================
-   DETALHE AMARELO
-========================= */
+/* =====================================
+   TEXTO EM NEGRITO
+===================================== */
 
 .contenido strong {
-    color: #171717;
+    color: #111;
 }
 
 
-/* =========================
-   BOTÃO CENTRAL
-========================= */
+/* =====================================
+   CORAÇÃO CENTRAL
+===================================== */
 
 .corazon {
     position: absolute;
@@ -441,7 +449,7 @@ h1 {
     cursor: pointer;
 
     box-shadow:
-        0 0 8px var(--amarelo-fraco);
+        0 0 8px var(--amarelo-brilho);
 }
 
 
@@ -471,9 +479,9 @@ h1 {
 }
 
 
-/* =========================
+/* =====================================
    ABRIR ENVELOPE
-========================= */
+===================================== */
 
 .abierto .sobre::before {
     transform:
@@ -492,9 +500,9 @@ h1 {
 }
 
 
-/* =========================
+/* =====================================
    CARTA SUBINDO
-========================= */
+===================================== */
 
 .carta.mostrar-carta {
     transform:
@@ -505,6 +513,10 @@ h1 {
 }
 
 
+/* =====================================
+   CARTA FECHANDO
+===================================== */
+
 .carta.cerrando-carta {
     transform:
         translateY(-290px);
@@ -514,14 +526,18 @@ h1 {
 }
 
 
+/* =====================================
+   CARTA ABERTA
+===================================== */
+
 .carta.abierta {
     z-index: 10000;
 }
 
 
-/* =========================
-   DESATIVAR ENVELOPE
-========================= */
+/* =====================================
+   DESATIVAR ABA
+===================================== */
 
 .envoltura-sobre.desactivar-sobre
 .sobre::before {
@@ -529,9 +545,9 @@ h1 {
 }
 
 
-/* =========================
+/* =====================================
    SCROLL
-========================= */
+===================================== */
 
 ::-webkit-scrollbar {
     width: 7px;
@@ -542,7 +558,7 @@ h1 {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #393c40;
+    background: #3c4046;
 
     border-radius: 5px;
 }
@@ -552,9 +568,9 @@ h1 {
 }
 
 
-/* =========================
+/* =====================================
    CELULAR
-========================= */
+===================================== */
 
 @media screen and (max-width: 550px) {
 
@@ -568,25 +584,38 @@ h1 {
     }
 
     .sobre::before {
-        border-top: 150px solid var(--envelope-claro);
+        border-top:
+            150px solid
+            var(--envelope-claro);
 
-        border-right: 150px solid transparent;
-        border-left: 150px solid transparent;
+        border-right:
+            150px solid transparent;
+
+        border-left:
+            150px solid transparent;
     }
+
+
+    /* asas menores no celular */
 
     .envoltura-sobre::before {
         left: -55px;
 
+        top: 40px;
+
         width: 75px;
-        height: 120px;
+        height: 170px;
     }
 
     .envoltura-sobre::after {
         right: -55px;
 
+        top: 40px;
+
         width: 75px;
-        height: 120px;
+        height: 170px;
     }
+
 
     h1 {
         font-size: 48px;
