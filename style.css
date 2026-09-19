@@ -5,53 +5,82 @@
 }
 
 :root {
-    --primario: #f5f5f5;
-    --fundo: #0b0b0d;
-    --fundo-sobre: #17171a;
-    --solapa-sobre: #242429;
-    --cuerpo-sobre: #101014;
-    --sombra: rgba(0, 0, 0, 0.65);
-    --texto: #1b1b1b;
-    --corazon: #f5c400;
+    --primario: #f4f4f4;
+    --fundo: #08090b;
+    --fundo-sobre: #17191d;
+    --solapa-sobre: #292c32;
+    --cuerpo-sobre: #111216;
+    --sombra: rgba(0, 0, 0, 0.8);
+    --texto: #171717;
+    --coracao: #f5c518;
 }
+
+/* FUNDO */
 
 body {
     background:
-        radial-gradient(circle at center, #292929 0%, #111114 45%, #050506 100%);
+        radial-gradient(circle at center, #202329 0%, #0d0f12 45%, #050608 100%);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     height: 100vh;
+    overflow: hidden;
+    position: relative;
 }
+
+/* detalhes de luz no fundo */
+
+body::before {
+    content: "";
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: rgba(245, 197, 24, 0.04);
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+}
+
+/* TÍTULO */
 
 h1 {
     font-family: "Marck Script", serif;
     text-align: center;
     font-size: 60px;
     margin-bottom: 50px;
-    color: #f5c400;
-    text-shadow: 0 0 10px rgba(245, 196, 0, 0.35);
+    color: #f5c518;
+    text-shadow:
+        0 0 5px rgba(245, 197, 24, 0.4),
+        0 0 20px rgba(245, 197, 24, 0.15);
+    z-index: 2;
 }
+
+/* ENVELOPE */
 
 .contenedor {
     width: 400px;
+    z-index: 2;
 }
 
 .envoltura-sobre {
     position: relative;
     background-color: var(--fundo-sobre);
     box-shadow:
-        0 0 20px rgba(0, 0, 0, 0.8),
-        0 0 35px rgba(245, 196, 0, 0.12);
-    border-radius: 15px;
+        0 15px 40px rgba(0, 0, 0, 0.8),
+        0 0 15px rgba(245, 197, 24, 0.08);
+    border-radius: 10px;
 }
+
+/* CORPO DO ENVELOPE */
 
 .sobre {
     position: relative;
     width: 400px;
     height: 300px;
 }
+
+/* ABA SUPERIOR */
 
 .sobre::before {
     content: "";
@@ -67,8 +96,14 @@ h1 {
 
     transform-origin: top;
     transition: all 0.5s ease-in-out 0.7s;
+
     border-radius: 10px;
+
+    /* detalhe amarelo */
+    filter: drop-shadow(0 3px 2px rgba(0, 0, 0, 0.4));
 }
+
+/* LADO DIREITO */
 
 .solapa-derecha {
     position: absolute;
@@ -78,12 +113,15 @@ h1 {
     height: 100%;
 
     clip-path: polygon(100% 0, 0 100%, 100% 100%);
-    background-color: var(--cuerpo-sobre);
+
+    background-color: #0e1013;
 
     border-bottom-right-radius: 10px;
     border-top-right-radius: 10px;
     border-bottom-left-radius: 10px;
 }
+
+/* LADO ESQUERDO */
 
 .solapa-izquierda {
     position: absolute;
@@ -93,12 +131,15 @@ h1 {
     height: 100%;
 
     clip-path: polygon(0 0, 0 100%, 100% 100%);
-    background-color: var(--cuerpo-sobre);
+
+    background-color: #0e1013;
 
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
 }
+
+/* CARTA */
 
 .carta {
     position: absolute;
@@ -106,60 +147,94 @@ h1 {
     width: 100%;
     height: 100%;
 
-    background-color: var(--primario);
+    background:
+        linear-gradient(
+            145deg,
+            #f8f8f8,
+            #e5e5e5
+        );
+
     text-align: center;
 
-    box-shadow: 0 0 8px var(--sombra);
+    box-shadow:
+        0 0 15px rgba(0, 0, 0, 0.5);
+
     padding: 20px;
+
     border-radius: 10px;
 
     transition: transform .5s ease-in-out;
 }
 
+/* CONTEÚDO DA CARTA */
+
 .contenido {
     font-family: "Gill Sans", Calibri, sans-serif;
+
     color: var(--texto);
+
     text-align: left;
+
     font-size: 12px;
 
-    border: 3px dotted #202020;
+    border: 3px dotted #222;
+
     padding: 10px;
+
     height: 100%;
 
     line-height: 14px;
+
     cursor: pointer;
+
     overflow-y: scroll;
+
+    background: rgba(255, 255, 255, 0.5);
 }
+
+/* NOME / DESTAQUES */
+
+.contenido strong {
+    color: #111;
+}
+
+/* CORAÇÃO / SÍMBOLO CENTRAL */
 
 .corazon {
     position: absolute;
+
     top: 50%;
     left: 50%;
 
     width: 30px;
     height: 30px;
 
-    background-color: var(--corazon);
+    background-color: var(--coracao);
 
     transform: translate(-50%, 0) rotate(45deg);
 
-    transition: transform 0.5s ease-in-out 1s;
+    transition:
+        transform 0.5s ease-in-out 1s;
 
     z-index: 999;
+
     cursor: pointer;
 
-    box-shadow: 0 0 8px rgba(245, 196, 0, 0.5);
+    box-shadow:
+        0 0 8px rgba(245, 197, 24, 0.4);
 }
 
 .corazon::before,
 .corazon::after {
     content: "";
+
     position: absolute;
 
     width: 30px;
     height: 30px;
 
-    background-color: var(--corazon);
+    background-color: var(--coracao);
+
     border-radius: 100%;
 }
 
@@ -171,65 +246,66 @@ h1 {
     right: 15px;
 }
 
-
-/* =========================
-   ANIMAÇÕES DO ENVELOPE
-   ========================= */
+/* ANIMAÇÃO DA ABA */
 
 .abierto .sobre::before {
     transform: rotateX(180deg);
     z-index: 0;
 }
 
+/* ANIMAÇÃO DO SÍMBOLO */
+
 .abierto .corazon {
     transform: rotate(90deg);
     transition-delay: 0.4s;
 }
+
+/* CARTA SUBINDO */
 
 .carta.mostrar-carta {
     transform: translateY(-290px);
     transition: transform .5s ease-in-out;
 }
 
+/* CARTA FECHANDO */
+
 .carta.cerrando-carta {
     transform: translateY(-290px);
     transition: transform .5s ease-in-out;
 }
 
+/* CARTA ABERTA */
+
 .carta.abierta {
     z-index: 10000;
 }
+
+/* DESATIVA CLIQUE DA ABA */
 
 .envoltura-sobre.desactivar-sobre .sobre::before {
     pointer-events: none;
 }
 
-
-/* =========================
-   SCROLL
-   ========================= */
+/* SCROLL */
 
 ::-webkit-scrollbar {
-    width: 6px;
+    width: 7px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #e5e5e5;
+    background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #222;
+    background-color: #333;
     border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background-color: #f5c400;
+    background-color: #f5c518;
 }
 
-
-/* =========================
-   CELULAR
-   ========================= */
+/* CELULAR */
 
 @media screen and (max-width: 400px) {
 
@@ -246,5 +322,10 @@ h1 {
         border-top: 150px solid var(--solapa-sobre);
         border-right: 150px solid transparent;
         border-left: 150px solid transparent;
+    }
+
+    h1 {
+        font-size: 48px;
+        margin-bottom: 35px;
     }
 }
